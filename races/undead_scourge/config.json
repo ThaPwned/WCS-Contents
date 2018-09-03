@@ -13,6 +13,11 @@
             "event": "player_attacker",
             "variables": {
                 "chance": [5, 7, 9, 11, 12, 13, 14, 15]
+            },
+            "other": {
+                "max_health": 200,
+                "min_health_gain": 4,
+                "max_health_gain": 21
             }
         },
         "unholy_aura": {
@@ -39,7 +44,6 @@
     },
     "games": {
         "default": {
-            "max_health": 200,
             "spawncmd_effect": "sprites/lgtning.vmt",
             "vampiric_aura_effect_0": "sprites/shellchrome.vmt",
             "vampiric_aura_effect_1": "sprites/tp_beam001.vmt",
