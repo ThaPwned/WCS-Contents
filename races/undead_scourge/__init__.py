@@ -78,6 +78,8 @@ def on_skill_desc(wcsplayer, skill_name, kwargs):
 
         kwargs['min_chance'] = chance[0]
         kwargs['max_chance'] = chance[-1]
+        kwargs['min_health'] = min_health_gain
+        kwargs['max_health'] = max_health_gain
     elif skill_name == 'unholy_aura':
         speed = config['speed']
 
