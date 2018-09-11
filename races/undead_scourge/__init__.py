@@ -8,10 +8,6 @@
 from random import randint
 
 # Source.Python Imports
-#   Effects
-from effects.base import TempEntity
-#   Engines
-from engines.precache import Model
 #   Mathlib
 from mathlib import Vector
 #   Message
@@ -42,17 +38,11 @@ max_health = settings.config['skills']['vampiric_aura']['other']['max_health']
 min_health_gain = settings.config['skills']['vampiric_aura']['other']['min_health_gain']
 max_health_gain = settings.config['skills']['vampiric_aura']['other']['max_health_gain']
 
-spawncmd_effect_model = Model(settings.get_game_entry('spawncmd_effect'))
-vampiric_aura_effect_0_model = Model(settings.get_game_entry('vampiric_aura_effect_0'))
-vampiric_aura_effect_1_model = Model(settings.get_game_entry('vampiric_aura_effect_1'))
-vampiric_aura_effect_2_model = Model(settings.get_game_entry('vampiric_aura_effect_2'))
-vampiric_aura_effect_3_model = Model(settings.get_game_entry('vampiric_aura_effect_3'))
-
-spawncmd_effect = TempEntity('BeamRingPoint', halo=spawncmd_effect_model, model=spawncmd_effect_model, start_radius=10, life_time=3.6, start_width=10, end_width=10, fade_length=50, amplitude=2, red=155, green=0, blue=0, alpha=255, speed=2)
-vampiric_aura_effect_0 = TempEntity('BeamPoints', halo=vampiric_aura_effect_0_model, model=vampiric_aura_effect_0_model, life_time=0.5, start_width=10, end_width=10, red=255, green=0, blue=0, alpha=255)
-vampiric_aura_effect_1 = TempEntity('BeamPoints', halo=vampiric_aura_effect_1_model, model=vampiric_aura_effect_1_model, life_time=0.5, start_width=10, end_width=10, red=255, green=0, blue=0, alpha=255)
-vampiric_aura_effect_2 = TempEntity('BeamPoints', halo=vampiric_aura_effect_2_model, model=vampiric_aura_effect_2_model, life_time=0.5, start_width=2, end_width=2, red=255, green=255, blue=255, alpha=255)
-vampiric_aura_effect_3 = TempEntity('BeamRingPoint', halo=vampiric_aura_effect_3_model, model=vampiric_aura_effect_3_model, start_radius=1, end_radius=10, life_time=0.5, start_width=40, end_width=40, fade_length=500, amplitude=255, red=255, green=0, blue=0, alpha=100, speed=255)
+spawncmd_effect = settings.get_effect_entry('spawncmd')
+vampiric_aura_effect_0 = settings.get_effect_entry('vampiric_aura_0')
+vampiric_aura_effect_1 = settings.get_effect_entry('vampiric_aura_1')
+vampiric_aura_effect_2 = settings.get_effect_entry('vampiric_aura_2')
+vampiric_aura_effect_3 = settings.get_effect_entry('vampiric_aura_3')
 
 
 # ============================================================================

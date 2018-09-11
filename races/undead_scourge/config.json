@@ -44,11 +44,101 @@
     },
     "games": {
         "default": {
-            "spawncmd_effect": "sprites/lgtning.vmt",
-            "vampiric_aura_effect_0": "sprites/shellchrome.vmt",
-            "vampiric_aura_effect_1": "sprites/tp_beam001.vmt",
-            "vampiric_aura_effect_2": "sprites/lgtning.vmt",
-            "vampiric_aura_effect_3": "sprites/shellchrome.vmt"
+            "spawncmd_model": "sprites/lgtning.vmt",
+            "vampiric_aura_model_0": "sprites/shellchrome.vmt",
+            "vampiric_aura_model_1": "sprites/tp_beam001.vmt",
+            "vampiric_aura_model_2": "sprites/lgtning.vmt",
+            "vampiric_aura_model_3": "sprites/shellchrome.vmt"
+        }
+    },
+    "effects": {
+        "spawncmd": {
+            "type": "effect10",
+            "args": {
+                "halo": "$games.GAME_NAME.spawncmd_model",
+                "model": "$games.GAME_NAME.spawncmd_model",
+                "center": null,
+                "start_radius": 10,
+                "end_radius": null,
+                "life_time": 3.6,
+                "start_width": 10,
+                "end_width": 10,
+                "fade_length": 50,
+                "amplitude": 2,
+                "red": 155,
+                "green": 0,
+                "blue": 0,
+                "alpha": 255,
+                "speed": 2
+            }
+        },
+        "vampiric_aura_0": {
+            "type": "effect3",
+            "args": {
+                "halo": "$games.GAME_NAME.vampiric_aura_model_0",
+                "model": "$games.GAME_NAME.vampiric_aura_model_0",
+                "start_point": null,
+                "end_point": null,
+                "life_time": 0.5,
+                "start_width": 10,
+                "end_width": 10,
+                "red": 255,
+                "green": 0,
+                "blue": 0,
+                "alpha": 255
+            }
+        },
+        "vampiric_aura_1": {
+            "type": "effect3",
+            "args": {
+                "halo": "$games.GAME_NAME.vampiric_aura_model_1",
+                "model": "$games.GAME_NAME.vampiric_aura_model_1",
+                "start_point": null,
+                "end_point": null,
+                "life_time": 0.5,
+                "start_width": 10,
+                "end_width": 10,
+                "red": 255,
+                "green": 0,
+                "blue": 0,
+                "alpha": 255
+            }
+        },
+        "vampiric_aura_2": {
+            "type": "effect3",
+            "args": {
+                "halo": "$games.GAME_NAME.vampiric_aura_model_2",
+                "model": "$games.GAME_NAME.vampiric_aura_model_2",
+                "start_point": null,
+                "end_point": null,
+                "life_time": 0.5,
+                "start_width": 10,
+                "end_width": 10,
+                "red": 255,
+                "green": 0,
+                "blue": 0,
+                "alpha": 255
+            }
+        },
+        "vampiric_aura_3": {
+            "type": "effect10",
+            "args": {
+                "halo": "$games.GAME_NAME.vampiric_aura_model_3",
+                "model": "$games.GAME_NAME.vampiric_aura_model_3",
+                "center": null,
+                "start_radius": 1,
+                "end_radius": 10,
+                "life_time": 0.5,
+                "start_width": 40,
+                "end_width": 40,
+                "fade_length": 500,
+                "amplitude": 2,
+                "red": 255,
+                "green": 0,
+                "blue": 0,
+                "alpha": 100,
+                "speed": 255
+            }
         }
     }
 }
