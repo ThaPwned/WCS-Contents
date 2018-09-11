@@ -1,0 +1,161 @@
+{
+    "required": 0,
+    "maximum": 0,
+    "restrictmap": [],
+    "restrictitem": [],
+    "restrictweapon": [],
+    "restrictteam": 0,
+    "teamlimit": 0,
+    "author": "Tha Pwned (original: Kryptonite)",
+    "allowonly": [],
+    "skills": {
+        "invisibility": {
+            "event": "player_spawn",
+            "variables": {
+                "invisible": [150, 140, 130, 120, 110, 100, 90, 80]
+            }
+        },
+        "devotion_aura": {
+            "event": "player_spawn",
+            "variables": {
+                "health": [15, 20, 25, 30, 35, 40, 45, 50]
+            }
+        },
+        "bash": {
+            "event": "player_attacker",
+            "variables": {
+                "chance": [15, 18, 21, 24, 27, 30, 31, 32]
+            }
+        },
+        "teleport": {
+            "event": "player_ability",
+            "required": 8,
+            "cooldown": [10, 9, 8, 7, 6, 5, 4, 3],
+            "variables": {
+                "range": [600, 660, 720, 780, 840, 920, 1000, 1000]
+            }
+        }
+    },
+    "games": {
+        "default": {
+            "spawncmd_model": "sprites/cbbl_smoke.vmt",
+            "bash_model_0": "sprites/cbbl_smoke.vmt",
+            "bash_model_1": "sprites/cbbl_smoke.vmt",
+            "teleport_model_0": "sprites/smoke.vmt",
+            "teleport_model_1": "effects/strider_muzzle.vmt",
+            "teleport_model_2": "effects/strider_muzzle.vmt",
+            "teleport_model_3": "effects/strider_muzzle.vmt"
+        }
+    },
+    "effects": {
+        "spawncmd": {
+            "type": "effect10",
+            "args": {
+                "halo": "$games.GAME_NAME.spawncmd_model",
+                "model": "$games.GAME_NAME.spawncmd_model",
+                "center": null,
+                "start_radius": null,
+                "end_radius": null,
+                "life_time": 3.6,
+                "start_width": 10,
+                "end_width": 10,
+                "fade_length": 50,
+                "amplitude": 2,
+                "red": 155,
+                "green": 0,
+                "blue": 0,
+                "alpha": 255,
+                "speed": null
+            }
+        },
+        "bash_0": {
+            "type": "effect3",
+            "args": {
+                "halo": "$games.GAME_NAME.bash_model_0",
+                "model": "$games.GAME_NAME.bash_model_0",
+                "start_point": null,
+                "end_point": null,
+                "life_time": 0.5,
+                "start_width": 10,
+                "end_width": 10,
+                "red": 255,
+                "green": 255,
+                "blue": 255,
+                "alpha": 255
+            }
+        },
+        "bash_1": {
+            "type": "effect10",
+            "args": {
+                "halo": "$games.GAME_NAME.bash_model_1",
+                "model": "$games.GAME_NAME.bash_model_1",
+                "center": null,
+                "start_radius": 20,
+                "end_radius": 45,
+                "life_time": 0.5,
+                "start_width": 25,
+                "end_width": 25,
+                "fade_length": 10,
+                "amplitude": 0,
+                "red": 255,
+                "green": 255,
+                "blue": 255,
+                "alpha": 255,
+                "speed": 0
+            }
+        },
+        "teleport_0": {
+            "type": "effect7",
+            "args": {
+                "model": "$games.GAME_NAME.teleport_model_0",
+                "origin": null,
+                "scale": 25,
+                "frame_rate": 10
+            }
+        },
+        "teleport_1": {
+            "type": "effect114",
+            "args": {
+                "halo": "$games.GAME_NAME.teleport_model_1",
+                "model": "$games.GAME_NAME.teleport_model_1",
+                "mins": null,
+                "maxs": null,
+                "height": 50,
+                "count": 50,
+                "speed": 47
+            }
+        },
+        "teleport_2": {
+            "type": "effect11",
+            "args": {
+                "model": "$games.GAME_NAME.teleport_model_2",
+                "origin": null,
+                "life_time": 0.4,
+                "scale": 1,
+                "brightness": 160
+            }
+        },
+        "teleport_3": {
+            "type": "effect108",
+            "args": {
+                "halo": "$games.GAME_NAME.teleport_model_3",
+                "model": "$games.GAME_NAME.teleport_model_3",
+                "center": null,
+                "start_radius": 80,
+                "end_radius": 85,
+                "frame_rate": 1,
+                "life_time": 0.5,
+                "start_width": 60,
+                "end_width": 60,
+                "fade_length": 10,
+                "amplitude": 0,
+                "red": 255,
+                "green": 255,
+                "blue": 255,
+                "alpha": 255,
+                "speed": 8,
+                "flags": 5
+            }
+        }
+    }
+}
