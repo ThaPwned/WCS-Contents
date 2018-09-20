@@ -11,7 +11,7 @@ from random import randint
 #   Mathlib
 from mathlib import Vector
 #   Message
-from messages import TextMsg
+from messages import HudMsg
 
 # WCS Imports
 #   Helpers
@@ -29,8 +29,7 @@ from ....core.players.filters import PlayerReadyIter
 # ============================================================================
 settings = race_manager.find(__name__)
 
-vampiric_aura_leech_message = TextMsg(settings.strings['vampiric_aura leech'])
-vampiric_aura_max_message = TextMsg(settings.strings['vampiric_aura max'])
+vampiric_aura_leech_message = HudMsg(settings.strings['vampiric_aura leech'], y=0.20)
 unholy_aura_message = SayText2(settings.strings['unholy_aura message'])
 levitation_message = SayText2(settings.strings['levitation message'])
 
@@ -129,8 +128,6 @@ def vampiric_aura(event, wcsplayer, variables):
                     attacker.health = health + value
 
                     vampiric_aura_leech_message.send(wcsplayer.index, value=value)
-                else:
-                    vampiric_aura_max_message.send(wcsplayer.index, value=max_health)
 
 
 @Command
