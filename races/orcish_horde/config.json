@@ -1,0 +1,223 @@
+{
+    "required": 0,
+    "maximum": 0,
+    "restrictmap": [],
+    "restrictitem": [],
+    "restrictweapon": [],
+    "restrictteam": 0,
+    "teamlimit": 0,
+    "author": "Tha Pwned (original: Kryptonite)",
+    "allowonly": [],
+    "skills": {
+        "critical_strike": {
+            "event": "pre_player_attacker",
+            "variables": {
+                "chance": [15, 15, 15, 15, 15, 15, 15, 15],
+                "multiplier": [0.4, 0.7, 1.0, 1.3, 1.6, 1.9, 2.1, 2.4]
+            }
+        },
+        "critical_grenade": {
+            "event": "pre_player_attacker",
+            "variables": {
+                "chance": [15, 15, 15, 15, 15, 15, 15, 15],
+                "multiplier": [0.4, 0.7, 1.0, 1.3, 1.6, 1.9, 2.1, 2.4]
+            }
+        },
+        "reincarnation": {
+            "event": "player_death",
+            "variables": {
+                "chance": [15, 25, 35, 45, 55, 65, 75, 80]
+            }
+        },
+        "chain_lightning": {
+            "event": "player_ability",
+            "required": 8,
+            "cooldown": 30,
+            "variables": {
+                "max_targets": [2, 2, 2, 3, 3, 3, 4, 4],
+                "radius": [200, 225, 250, 275, 300, 325, 350, 375],
+                "damage": [32, 32, 32, 32, 32, 32, 32, 32]
+            }
+        }
+    },
+    "games": {
+        "default": {
+            "critical_strike_model": "sprites/lgtning.vmt",
+            "critical_grenade_model_0": "sprites/lgtning.vmt",
+            "critical_grenade_model_1": "sprites/lgtning.vmt",
+            "critical_grenade_model_2": "sprites/lgtning.vmt",
+            "reincarnation_model": "sprites/lgtning.vmt",
+            "chain_lightning_model_0": "sprites/lgtning.vmt",
+            "chain_lightning_model_1": "sprites/lgtning.vmt",
+            "chain_lightning_model_2": "sprites/lgtning.vmt"
+        },
+        "csgo": {
+            "critical_strike_model": "sprites/halo.vmt",
+            "critical_grenade_model_0": "sprites/halo.vmt",
+            "critical_grenade_model_1": "sprites/halo.vmt",
+            "critical_grenade_model_2": "sprites/halo.vmt",
+            "reincarnation_model": "sprites/halo.vmt",
+            "chain_lightning_model_0": "sprites/halo.vmt",
+            "chain_lightning_model_1": "sprites/halo.vmt",
+            "chain_lightning_model_2": "sprites/halo.vmt"
+        }
+    },
+    "effects": {
+        "critical_strike": {
+            "type": "effect3",
+            "args": {
+                "halo": "$games.GAME_NAME.critical_strike_model",
+                "model": "$games.GAME_NAME.critical_strike_model",
+                "start_point": null,
+                "end_point": null,
+                "life_time": 0.5,
+                "start_width": 8,
+                "end_width": 8,
+                "red": 255,
+                "green": 71,
+                "blue": 36,
+                "alpha": 255
+            }
+        },
+        "critical_grenade_0": {
+            "type": "effect10",
+            "args": {
+                "halo": "$games.GAME_NAME.critical_grenade_model_0",
+                "model": "$games.GAME_NAME.critical_grenade_model_0",
+                "center": null,
+                "start_radius": 25,
+                "end_radius": 26,
+                "life_time": 0.75,
+                "start_width": 8,
+                "end_width": 8,
+                "fade_length": 5,
+                "amplitude": 0,
+                "red": 255,
+                "green": 71,
+                "blue": 36,
+                "alpha": 255,
+                "speed": 0
+            }
+        },
+        "critical_grenade_1": {
+            "type": "effect10",
+            "args": {
+                "halo": "$games.GAME_NAME.critical_grenade_model_1",
+                "model": "$games.GAME_NAME.critical_grenade_model_1",
+                "center": null,
+                "start_radius": 25,
+                "end_radius": 26,
+                "life_time": 0.75,
+                "start_width": 8,
+                "end_width": 8,
+                "fade_length": 5,
+                "amplitude": 0,
+                "red": 255,
+                "green": 71,
+                "blue": 36,
+                "alpha": 255,
+                "speed": 0
+            }
+        },
+        "critical_grenade_2": {
+            "type": "effect10",
+            "args": {
+                "halo": "$games.GAME_NAME.critical_grenade_model_2",
+                "model": "$games.GAME_NAME.critical_grenade_model_2",
+                "center": null,
+                "start_radius": 25,
+                "end_radius": 26,
+                "life_time": 0.75,
+                "start_width": 8,
+                "end_width": 8,
+                "fade_length": 5,
+                "amplitude": 0,
+                "red": 255,
+                "green": 71,
+                "blue": 36,
+                "alpha": 255,
+                "speed": 0
+            }
+        },
+        "reincarnation": {
+            "type": "effect10",
+            "args": {
+                "halo": "$games.GAME_NAME.reincarnation_model",
+                "model": "$games.GAME_NAME.reincarnation_model",
+                "center": null,
+                "start_radius": 130,
+                "end_radius": 131,
+                "life_time": 3,
+                "start_width": 80,
+                "end_width": 80,
+                "fade_length": 20,
+                "amplitude": 0,
+                "red": 255,
+                "green": 71,
+                "blue": 36,
+                "alpha": 200,
+                "speed": 10
+            }
+        },
+        "chain_lightning_0": {
+            "type": "effect106",
+            "args": {
+                "halo": "$games.GAME_NAME.chain_lightning_model_0",
+                "model": "$games.GAME_NAME.chain_lightning_model_0",
+                "start_point": null,
+                "end_point": null,
+                "frame_rate": 10,
+                "life_time": 0.2,
+                "start_width": 10,
+                "end_width": 1,
+                "fade_length": 1,
+                "amplitude": 13,
+                "red": 160,
+                "green": 160,
+                "blue": 230,
+                "alpha": 255,
+                "speed": 11
+            }
+        },
+        "chain_lightning_1": {
+            "type": "effect106",
+            "args": {
+                "halo": "$games.GAME_NAME.chain_lightning_model_1",
+                "model": "$games.GAME_NAME.chain_lightning_model_1",
+                "start_point": null,
+                "end_point": null,
+                "frame_rate": 10,
+                "life_time": 0.2,
+                "start_width": 10,
+                "end_width": 2,
+                "fade_length": 2,
+                "amplitude": 12,
+                "red": 150,
+                "green": 150,
+                "blue": 255,
+                "alpha": 220,
+                "speed": 8
+            }
+        },
+        "chain_lightning_2": {
+            "type": "effect106",
+            "args": {
+                "halo": "$games.GAME_NAME.chain_lightning_model_2",
+                "model": "$games.GAME_NAME.chain_lightning_model_2",
+                "start_point": null,
+                "end_point": null,
+                "frame_rate": 10,
+                "life_time": 0.2,
+                "start_width": 10,
+                "end_width": 1,
+                "fade_length": 1,
+                "amplitude": 14,
+                "red": 200,
+                "green": 200,
+                "blue": 255,
+                "alpha": 235,
+                "speed": 10
+            }
+        }
+    }
+}
