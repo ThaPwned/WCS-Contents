@@ -40,8 +40,8 @@ delays = []
 
 invisibility_message = SayText2(settings.strings['invisibility message'])
 devotion_aura_message = SayText2(settings.strings['devotion_aura message'])
-bash_attacker_message = HudMsg(settings.strings['bash attacker'], y=0.35)
-bash_victim_message = HudMsg(settings.strings['bash victim'], y=0.35)
+bash_attacker_message = HudMsg(settings.strings['bash attacker'], y=0.2)
+bash_victim_message = HudMsg(settings.strings['bash victim'], y=0.2)
 teleport_failed_message = SayText2(settings.strings['teleport failed'])
 
 spawncmd_effect = settings.get_effect_entry('spawncmd')
