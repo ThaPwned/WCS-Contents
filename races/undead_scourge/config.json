@@ -49,6 +49,13 @@
             "vampiric_aura_model_1": "sprites/tp_beam001.vmt",
             "vampiric_aura_model_2": "sprites/lgtning.vmt",
             "vampiric_aura_model_3": "sprites/shellchrome.vmt"
+        },
+        "csgo": {
+            "spawncmd_model": "sprites/halo.vmt",
+            "vampiric_aura_model_0": "sprites/richo1.vmt",
+            "vampiric_aura_model_1": "sprites/laserbeam.vmt",
+            "vampiric_aura_model_2": "sprites/halo.vmt",
+            "vampiric_aura_model_3": "sprites/richo1.vmt"
         }
     },
     "effects": {
