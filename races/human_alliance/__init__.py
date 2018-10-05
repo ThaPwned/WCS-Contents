@@ -61,7 +61,7 @@ def spawncmd(event, wcsplayer):
     vector = Vector(*wcsplayer.player.origin)
 
     for (start_radius, end_radius, speed) in ((40, 60, 1), (80, 100, 1), (60, 80, 2)):
-        spawncmd_effect.create(wcsplayer.index, center=vector, start_radius=start_radius, end_radius=end_radius, speed=speed)
+        spawncmd_effect.create(center=vector, start_radius=start_radius, end_radius=end_radius, speed=speed)
 
         vector.z += 12
 
@@ -137,11 +137,9 @@ def bash(event, wcsplayer, variables):
 
         vector1.z += 20
         vector2.z += 20
-
         bash_effect_0.create(start_point=vector1, end_point=vector2)
 
         vector2.z += 5
-
         bash_effect_1.create(center=vector2)
 
 
@@ -160,7 +158,6 @@ def teleport_on(event, wcsplayer, variables):
         wcsplayer.skills['teleport'].cooldown = time() + wcsplayer.skills['teleport'].cooldown_seconds
 
         vector1.z += 25
-
         teleport_effect_0.create(origin=vector1)
         teleport_effect_1.create(mins=vector1, maxs=vector1)
         teleport_effect_2.create(origin=vector1)

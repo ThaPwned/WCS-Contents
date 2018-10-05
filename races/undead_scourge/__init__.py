@@ -53,7 +53,7 @@ def spawncmd(event, wcsplayer):
     vector.z += 5
 
     for end_radius in (40, 50, 60, 70, 80, 90):
-        spawncmd_effect.create(wcsplayer.index, center=vector, end_radius=end_radius)
+        spawncmd_effect.create(center=vector, end_radius=end_radius)
 
         vector.z += 10
 
@@ -110,13 +110,11 @@ def vampiric_aura(event, wcsplayer, variables):
 
                 vector1.z += 20
                 vector2.z += 20
-
                 vampiric_aura_effect_0.create(start_point=vector1, end_point=vector2)
                 vampiric_aura_effect_1.create(start_point=vector1, end_point=vector2)
                 vampiric_aura_effect_2.create(start_point=vector1, end_point=vector2)
 
                 vector2.z += 8
-
                 vampiric_aura_effect_3.create(center=vector2)
 
                 health = attacker.health

@@ -125,7 +125,6 @@ def critical_strike(event, wcsplayer, variables):
 
         vector1.z += 20
         vector2.z += 20
-
         critical_strike_effect.create(start_point=vector1, end_point=vector2)
 
 
@@ -213,7 +212,6 @@ def chain_lightning_on(event, wcsplayer, variables):
                     wcstarget.take_damage(damage, wcsplayer.index, 'orcish_horde-chain_lightning')
 
                     vector2.z += 35
-
                     chain_lightning_0_effect.create(start_point=vector, end_point=vector2)
                     chain_lightning_1_effect.create(start_point=vector, end_point=vector2)
                     chain_lightning_2_effect.create(start_point=vector, end_point=vector2)
