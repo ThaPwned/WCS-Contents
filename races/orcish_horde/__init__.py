@@ -34,7 +34,7 @@ from ....core.players.filters import PlayerReadyIter
 # ============================================================================
 settings = race_manager.find(__name__)
 
-delays = {}
+_delays = {}
 
 reincarnation_counter_message = HudMsg(settings.strings['reincarnation counter'], y=0.2)
 reincarnation_complete_message = HudMsg(settings.strings['reincarnation complete'], y=0.2)
@@ -64,7 +64,16 @@ def roundstartcmd(event, wcsplayer):
 
 @Command
 def spawncmd(event, wcsplayer):
-    delay = delays.pop(wcsplayer.userid, None)
+    delay = _delays.pop(wcsplayer, None)
+
+    if delay is not None:
+        if delay.running:
+            delay.cancel()
+
+
+@Command
+def disconnectcmd(event, wcsplayer):
+    delay = _delays.pop(wcsplayer, None)
 
     if delay is not None:
         if delay.running:
@@ -230,7 +239,7 @@ def _reincarnate_delay(wcsplayer, counter, vector):
 
         counter -= 1
 
-        delays[wcsplayer.userid] = Delay(1, _reincarnate_delay, (wcsplayer, counter, vector))
+        _delays[wcsplayer] = Delay(1, _reincarnate_delay, (wcsplayer, counter, vector))
     else:
         reincarnation_complete_message.send(wcsplayer.index)
 

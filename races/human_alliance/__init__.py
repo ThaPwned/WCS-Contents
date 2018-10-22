@@ -4,6 +4,10 @@
 # >> IMPORTS
 # ============================================================================
 # Python Imports
+#   Collections
+from collections import defaultdict
+#   Itertools
+from itertools import chain
 #   Random
 from random import randint
 #   Time
@@ -36,7 +40,7 @@ from ....core.players.entity import Player
 # ============================================================================
 settings = race_manager.find(__name__)
 
-delays = []
+_delays = defaultdict(list)
 
 invisibility_message = SayText2(settings.strings['invisibility message'])
 devotion_aura_message = SayText2(settings.strings['devotion_aura message'])
@@ -64,6 +68,16 @@ def spawncmd(event, wcsplayer):
         spawncmd_effect.create(center=vector, start_radius=start_radius, end_radius=end_radius, speed=speed)
 
         vector.z += 12
+
+
+@Command
+def disconnectcmd(event, wcsplayer):
+    delays = _delays.pop(wcsplayer, None)
+
+    if delays is not None:
+        for delay in delays:
+            if delay.running:
+                delay.cancel()
 
 
 @Command
@@ -124,10 +138,9 @@ def bash(event, wcsplayer, variables):
 
         wcsvictim.data['stuck'] = stuck + 1
 
-        delay = Delay(1, _reset_bash, (wcsvictim.userid, ))
+        delay = Delay(1, _reset_bash, (wcsvictim, ))
         delay.args += (delay, )
-
-        delays.append(delay)
+        _delays[wcsvictim].append(delay)
 
         bash_attacker_message.send(wcsplayer.index, name=wcsvictim.name)
         bash_victim_message.send(wcsvictim.index, name=wcsplayer.name)
@@ -171,21 +184,17 @@ def teleport_on(event, wcsplayer, variables):
 # ============================================================================
 @Event('round_start')
 def round_start(event):
-    for delay in delays:
+    for delay in chain.from_iterables(_delays.values()):
         delay()
 
-    delays.clear()
+    _delays.clear()
 
 
 # ============================================================================
 # >> HELPER FUNCTIONS
 # ============================================================================
-def _reset_bash(userid, delay):
-    try:
-        wcsplayer = Player.from_userid(userid)
-    except ValueError:
-        pass
-    else:
+def _reset_bash(wcsplayer, delay):
+    if wcsplayer.online:
         wcsplayer.data['stuck'] -= 1
 
         if not wcsplayer.data['stuck']:
@@ -195,4 +204,7 @@ def _reset_bash(userid, delay):
                 else:
                     wcsplayer.player.move_type = MoveType.WALK
 
-    delays.remove(delay)
+    _delays[wcsplayer].remove(delay)
+
+    if not _delays[wcsplayer]:
+        del _delays[wcsplayer]
