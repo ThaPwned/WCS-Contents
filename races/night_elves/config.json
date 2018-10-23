@@ -1,0 +1,280 @@
+{
+    "required": 0,
+    "maximum": 0,
+    "restrictmap": [],
+    "restrictitem": [],
+    "restrictweapon": [],
+    "restrictteam": 0,
+    "teamlimit": 0,
+    "author": "Tha Pwned (original: Kryptonite)",
+    "allowonly": [],
+    "skills": {
+        "evasion": {
+            "event": "pre_player_victim",
+            "variables": {
+                "chance": [5, 7, 9, 12, 15, 17, 18, 20]
+            }
+        },
+        "thorns_aura": {
+            "event": "player_victim",
+            "variables": {
+                "chance": [15, 20, 25, 30, 35, 40, 45, 50],
+                "multiplier": [0.1, 0.125, 0.14, 0.16, 0.2, 0.25, 0.3, 0.33]
+            }
+        },
+        "trueshot_aura": {
+            "event": "pre_player_attacker",
+            "variables": {
+                "chance": [5, 7, 9, 11, 12, 13, 14, 15],
+                "multiplier": [0.1, 0.15, 0.2, 0.2, 0.3, 0.4, 0.5, 0.6]
+            }
+        },
+        "entangling_roots": {
+            "event": "player_ability",
+            "required": 8,
+            "cooldown": 30,
+            "variables": {
+                "radius": [225, 250, 275, 300, 325, 350, 375, 400],
+                "duration": [2, 2.2, 2.35, 2.5, 2.6, 2.75, 2.9, 3]
+            }
+        }
+    },
+    "games": {
+        "default": {
+            "spawncmd_model": "sprites/lgtning.vmt",
+            "thorns_aura_model_0": "sprites/lgtning.vmt",
+            "thorns_aura_model_1": "sprites/lgtning.vmt",
+            "trueshot_aura_model_0": "sprites/lgtning.vmt",
+            "trueshot_aura_model_1": "sprites/lgtning.vmt",
+            "trueshot_aura_model_2": "sprites/lgtning.vmt",
+            "entangling_roots_model_0": "sprites/laser.vmt",
+            "entangling_roots_model_1": "sprites/laser.vmt",
+            "entangling_roots_model_2": "sprites/laser.vmt",
+            "entangling_roots_model_3": "sprites/laser.vmt",
+            "entangling_roots_model_4": "sprites/laser.vmt"
+        },
+        "csgo": {
+            "spawncmd_model": "sprites/halo.vmt",
+            "thorns_aura_model_0": "sprites/halo.vmt",
+            "thorns_aura_model_1": "sprites/halo.vmt",
+            "trueshot_aura_model_0": "sprites/halo.vmt",
+            "trueshot_aura_model_1": "sprites/halo.vmt",
+            "trueshot_aura_model_2": "sprites/halo.vmt",
+            "entangling_roots_model_0": "sprites/laser.vmt",
+            "entangling_roots_model_1": "sprites/laser.vmt",
+            "entangling_roots_model_2": "sprites/laser.vmt",
+            "entangling_roots_model_3": "sprites/laser.vmt",
+            "entangling_roots_model_4": "sprites/laser.vmt"
+        }
+    },
+    "effects": {
+        "spawncmd": {
+            "type": "effect10",
+            "args": {
+                "halo": "$games.GAME_NAME.spawncmd_model",
+                "model": "$games.GAME_NAME.spawncmd_model",
+                "center": null,
+                "start_radius": 10,
+                "end_radius": 200,
+                "life_time": 2,
+                "start_width": 10,
+                "end_width": 10,
+                "fade_length": 100,
+                "amplitude": 0,
+                "red": 175,
+                "green": 175,
+                "blue": 255,
+                "alpha": 155,
+                "speed": 1
+            }
+        },
+        "thorns_aura_0": {
+            "type": "effect3",
+            "args": {
+                "halo": "$games.GAME_NAME.thorns_aura_model_0",
+                "model": "$games.GAME_NAME.thorns_aura_model_0",
+                "start_point": null,
+                "end_point": null,
+                "life_time": 1,
+                "start_width": 8,
+                "end_width": 8,
+                "red": 175,
+                "green": 175,
+                "blue": 255,
+                "alpha": 155
+            }
+        },
+        "thorns_aura_1": {
+            "type": "effect3",
+            "args": {
+                "halo": "$games.GAME_NAME.thorns_aura_model_1",
+                "model": "$games.GAME_NAME.thorns_aura_model_1",
+                "start_point": null,
+                "end_point": null,
+                "life_time": 1,
+                "start_width": 15,
+                "end_width": 15,
+                "red": 175,
+                "green": 175,
+                "blue": 200,
+                "alpha": 155
+            }
+        },
+        "trueshot_aura_0": {
+            "type": "effect10",
+            "args": {
+                "halo": "$games.GAME_NAME.trueshot_aura_model_0",
+                "model": "$games.GAME_NAME.trueshot_aura_model_0",
+                "center": null,
+                "start_radius": 40,
+                "end_radius": 41,
+                "life_time": 1,
+                "start_width": 10,
+                "end_width": 10,
+                "fade_length": 100,
+                "amplitude": 0,
+                "red": 175,
+                "green": 175,
+                "blue": 255,
+                "alpha": 155,
+                "speed": 1
+            }
+        },
+        "trueshot_aura_1": {
+            "type": "effect3",
+            "args": {
+                "halo": "$games.GAME_NAME.trueshot_aura_model_1",
+                "model": "$games.GAME_NAME.trueshot_aura_model_1",
+                "start_point": null,
+                "end_point": null,
+                "life_time": 1,
+                "start_width": 15,
+                "end_width": 15,
+                "red": 175,
+                "green": 175,
+                "blue": 255,
+                "alpha": 155
+            }
+        },
+        "trueshot_aura_2": {
+            "type": "effect10",
+            "args": {
+                "halo": "$games.GAME_NAME.trueshot_aura_model_2",
+                "model": "$games.GAME_NAME.trueshot_aura_model_2",
+                "center": null,
+                "start_radius": 40,
+                "end_radius": 41,
+                "life_time": 1,
+                "start_width": 10,
+                "end_width": 10,
+                "fade_length": 100,
+                "amplitude": 0,
+                "red": 175,
+                "green": 175,
+                "blue": 255,
+                "alpha": 155,
+                "speed": 1
+            }
+        },
+        "entangling_roots_0": {
+            "type": "effect10",
+            "args": {
+                "halo": "$games.GAME_NAME.entangling_roots_model_0",
+                "model": "$games.GAME_NAME.entangling_roots_model_0",
+                "center": null,
+                "start_radius": 60,
+                "end_radius": 20,
+                "life_time": 1,
+                "start_width": 3,
+                "end_width": 3,
+                "fade_length": 5,
+                "amplitude": 0,
+                "red": 80,
+                "green": 155,
+                "blue": 0,
+                "alpha": 255,
+                "speed": 2
+            }
+        },
+        "entangling_roots_1": {
+            "type": "effect10",
+            "args": {
+                "halo": "$games.GAME_NAME.entangling_roots_model_1",
+                "model": "$games.GAME_NAME.entangling_roots_model_1",
+                "center": null,
+                "start_radius": 75,
+                "end_radius": 35,
+                "life_time": 1,
+                "start_width": 3,
+                "end_width": 3,
+                "fade_length": 6,
+                "amplitude": 0,
+                "red": 108,
+                "green": 190,
+                "blue": 0,
+                "alpha": 255,
+                "speed": 2
+            }
+        },
+        "entangling_roots_2": {
+            "type": "effect106",
+            "args": {
+                "halo": "$games.GAME_NAME.entangling_roots_model_2",
+                "model": "$games.GAME_NAME.entangling_roots_model_2",
+                "start_point": null,
+                "end_point": null,
+                "frame_rate": 10,
+                "life_time": 1,
+                "start_width": 5,
+                "end_width": 5,
+                "fade_length": 40,
+                "amplitude": 4,
+                "red": 0,
+                "green": 160,
+                "blue": 0,
+                "alpha": 155,
+                "speed": 2
+            }
+        },
+        "entangling_roots_3": {
+            "type": "effect106",
+            "args": {
+                "halo": "$games.GAME_NAME.entangling_roots_model_3",
+                "model": "$games.GAME_NAME.entangling_roots_model_3",
+                "start_point": null,
+                "end_point": null,
+                "frame_rate": 10,
+                "life_time": 1,
+                "start_width": 4,
+                "end_width": 4,
+                "fade_length": 10,
+                "amplitude": 2,
+                "red": 0,
+                "green": 108,
+                "blue": 0,
+                "alpha": 180,
+                "speed": 2
+            }
+        },
+        "entangling_roots_4": {
+            "type": "effect106",
+            "args": {
+                "halo": "$games.GAME_NAME.entangling_roots_model_4",
+                "model": "$games.GAME_NAME.entangling_roots_model_4",
+                "start_point": null,
+                "end_point": null,
+                "frame_rate": 10,
+                "life_time": 1,
+                "start_width": 5,
+                "end_width": 5,
+                "fade_length": 10,
+                "amplitude": 4,
+                "red": 0,
+                "green": 80,
+                "blue": 0,
+                "alpha": 190,
+                "speed": 2
+            }
+        }
+    }
+}
