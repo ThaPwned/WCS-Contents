@@ -16,8 +16,6 @@ from listeners.tick import Delay
 from mathlib import Vector
 #   Message
 from messages import HudMsg
-#   Players
-from players.entity import Player
 
 # WCS Imports
 #   Helpers
@@ -26,6 +24,7 @@ from ....core.helpers.overwrites import SayText2
 from ....core.modules.races.calls import Command
 from ....core.modules.races.manager import race_manager
 #   Players
+from ....core.players.entity import Player
 from ....core.players.filters import PlayerReadyIter
 
 
@@ -73,10 +72,13 @@ def spawncmd(event, wcsplayer):
 
 @Command
 def disconnectcmd(event, wcsplayer):
+    print(wcsplayer, 'disconnected 1')
     delay = _delays.pop(wcsplayer, None)
 
     if delay is not None:
+        print(wcsplayer, 'disconnected 2')
         if delay.running:
+            print(wcsplayer, 'disconnected 3')
             delay.cancel()
 
 
@@ -124,13 +126,13 @@ def on_skill_desc(wcsplayer, skill_name, kwargs):
 @Command
 def critical_strike(event, wcsplayer, variables):
     if randint(0, 100) <= variables['chance']:
-        event['info'].damage *= variables['multiplier']
-
         userid = event['userid']
-        player = Player.from_userid(userid)
+        wcsvictim = Player.from_userid(userid)
+
+        wcsvictim.take_delayed_damage(event['info'].damage * variables['multiplier'], wcsplayer.index, 'orcish_horde-critical_strike')
 
         vector1 = Vector(*wcsplayer.player.origin)
-        vector2 = Vector(*player.origin)
+        vector2 = Vector(*wcsvictim.player.origin)
 
         vector1.z += 20
         vector2.z += 20
@@ -141,12 +143,12 @@ def critical_strike(event, wcsplayer, variables):
 def critical_grenade(event, wcsplayer, variables):
     if event['weapon'] == 'hegrenade_projectile':
         if randint(0, 100) <= variables['chance']:
-            event['info'].damage *= variables['multiplier']
-
             userid = event['userid']
-            player = Player.from_userid(userid)
+            wcsvictim = Player.from_userid(userid)
 
-            vector = Vector(*player.origin)
+            wcsvictim.take_delayed_damage(event['info'].damage * variables['multiplier'], wcsplayer.index, 'orcish_horde-critical_grenade')
+
+            vector = Vector(*wcsvictim.player.origin)
 
             vector.z += 15
             critical_grenade_0_effect.create(center=vector)

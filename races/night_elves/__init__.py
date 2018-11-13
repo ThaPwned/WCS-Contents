@@ -132,44 +132,35 @@ def thorns_aura(event, wcsplayer, variables):
 
         if not victim.dead:
             wcsattacker = Player.from_userid(event['attacker'])
-            attacker = wcsattacker.player
+            wcsattacker.take_damage(event['dmg_health'] * variables['multiplier'], wcsplayer.index, 'night_elves-thorns_aura')
 
-            if not attacker.dead:
-                wcsattacker.take_damage(event['dmg_health'] * variables['multiplier'], wcsplayer.index, 'night_elves-thorns_aura')
+            vector1 = Vector(*victim.origin)
+            vector2 = Vector(*wcsattacker.player.origin)
 
-                vector1 = Vector(*victim.origin)
-                vector2 = Vector(*attacker.origin)
-
-                vector1.z += 15
-                vector2.z += 15
-                thorns_aura_0_effect.create(start_point=vector1, end_point=vector2)
-                thorns_aura_1_effect.create(start_point=vector1, end_point=vector2)
+            vector1.z += 15
+            vector2.z += 15
+            thorns_aura_0_effect.create(start_point=vector1, end_point=vector2)
+            thorns_aura_1_effect.create(start_point=vector1, end_point=vector2)
 
 
 @Command
 def trueshot_aura(event, wcsplayer, variables):
     if randint(0, 100) <= variables['chance']:
-        victim = wcsplayer.player
+        wcsvictim = Player.from_userid(event['userid'])
+        wcsvictim.take_delayed_damage(event['info'].damage * variables['multiplier'], wcsplayer.index, 'night_elves-trueshot_aura')
 
-        if not victim.dead:
-            wcsattacker = Player.from_userid(event['attacker'])
-            attacker = wcsattacker.player
+        vector1 = Vector(*wcsplayer.player.origin)
+        vector2 = Vector(*wcsvictim.player.origin)
 
-            if not attacker.dead:
-                event['info'].damage *= 1 + variables['multiplier']
+        vector1.z += 10
+        trueshot_aura_0_effect.create(center=vector1)
 
-                vector1 = Vector(*victim.origin)
-                vector2 = Vector(*attacker.origin)
+        vector1.z += 10
+        vector2.z += 20
+        trueshot_aura_1_effect.create(start_point=vector1, end_point=vector2)
 
-                vector1.z += 10
-                trueshot_aura_0_effect.create(center=vector1)
-
-                vector1.z += 10
-                vector2.z += 20
-                trueshot_aura_1_effect.create(start_point=vector1, end_point=vector2)
-
-                vector1.z += 10
-                trueshot_aura_2_effect.create(center=vector1)
+        vector1.z += 10
+        trueshot_aura_2_effect.create(center=vector1)
 
 
 @Command
@@ -188,7 +179,7 @@ def entangling_roots_on(event, wcsplayer, variables):
             vector = Vector(*player.origin)
 
             # TODO: Check if there's a wall between the two players
-            for target, wcstarget in PlayerReadyIter(['alive', 'ct' if wcsplayer.player.team_index == 2 else 't']):
+            for target, wcstarget in PlayerReadyIter(['alive', 'ct' if team == 2 else 't']):
                 if wcstarget.data.get('ulti_immunity', False):
                     immune += 1
 
