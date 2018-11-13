@@ -184,7 +184,7 @@ def teleport_on(event, wcsplayer, variables):
 # ============================================================================
 @Event('round_start')
 def round_start(event):
-    for delay in chain.from_iterables(_delays.values()):
+    for delay in chain.from_iterable(_delays.values()):
         delay()
 
     _delays.clear()
