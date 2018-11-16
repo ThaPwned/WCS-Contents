@@ -213,7 +213,7 @@ def chain_lightning_on(event, wcsplayer, variables):
                 chain_lightning_block_attacker_message.send(wcsplayer.index, count=immune)
 
             if targets:
-                wcsplayer.skills['chain_lightning'].cooldown = time() + wcsplayer.skills['chain_lightning'].cooldown_seconds
+                wcsplayer.skills['chain_lightning'].reset_cooldown()
 
                 vector.z += 35
 

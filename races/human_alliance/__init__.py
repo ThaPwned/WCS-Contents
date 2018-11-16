@@ -168,7 +168,7 @@ def teleport_on(event, wcsplayer, variables):
         vector2 *= 2
         player.set_property_vector('m_vecBaseVelocity', vector2)
 
-        wcsplayer.skills['teleport'].cooldown = time() + wcsplayer.skills['teleport'].cooldown_seconds
+        wcsplayer.skills['teleport'].reset_cooldown()
 
         vector1.z += 25
         teleport_effect_0.create(origin=vector1)
