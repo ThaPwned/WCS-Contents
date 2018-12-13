@@ -10,25 +10,21 @@
     "allowonly": [],
     "skills": {
         "invisibility": {
-            "event": "player_spawn",
             "variables": {
                 "invisible": [150, 140, 130, 120, 110, 100, 90, 80]
             }
         },
         "devotion_aura": {
-            "event": "player_spawn",
             "variables": {
                 "health": [15, 20, 25, 30, 35, 40, 45, 50]
             }
         },
         "bash": {
-            "event": "player_attacker",
             "variables": {
                 "chance": [15, 18, 21, 24, 27, 30, 31, 32]
             }
         },
         "teleport": {
-            "event": "player_ability",
             "required": 8,
             "cooldown": [10, 9, 8, 7, 6, 5, 4, 3],
             "variables": {

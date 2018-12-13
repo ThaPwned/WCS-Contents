@@ -17,7 +17,7 @@ from messages import HudMsg
 #   Helpers
 from ....core.helpers.overwrites import SayText2
 #   Modules
-from ....core.modules.races.calls import Command
+from ....core.modules.races.calls import command
 from ....core.modules.races.manager import race_manager
 #   Players
 from ....core.players.entity import Player
@@ -47,7 +47,7 @@ vampiric_aura_effect_3 = settings.get_effect_entry('vampiric_aura_3')
 # ============================================================================
 # >> RACE CALLBACKS
 # ============================================================================
-@Command
+@command
 def spawncmd(event, wcsplayer):
     vector = Vector(*wcsplayer.player.origin)
     vector.z += 5
@@ -58,7 +58,7 @@ def spawncmd(event, wcsplayer):
         vector.z += 10
 
 
-@Command
+@command
 def on_skill_desc(wcsplayer, skill_name, kwargs):
     config = settings.config['skills'][skill_name]['variables']
 
@@ -95,7 +95,7 @@ def on_skill_desc(wcsplayer, skill_name, kwargs):
 # ============================================================================
 # >> SKILL CALLBACKS
 # ============================================================================
-@Command
+@command(event='player_attacker')
 def vampiric_aura(event, wcsplayer, variables):
     if randint(0, 100) <= variables['chance']:
         wcsvictim = Player.from_userid(event['userid'])
@@ -128,7 +128,7 @@ def vampiric_aura(event, wcsplayer, variables):
                     vampiric_aura_leech_message.send(wcsplayer.index, value=value)
 
 
-@Command
+@command(event='post_player_spawn')
 def unholy_aura(event, wcsplayer, variables):
     wcsplayer.player.speed = variables['speed']
 
@@ -137,7 +137,7 @@ def unholy_aura(event, wcsplayer, variables):
     unholy_aura_message.send(wcsplayer.index, value=value)
 
 
-@Command
+@command(event='post_player_spawn')
 def levitation(event, wcsplayer, variables):
     wcsplayer.player.gravity = variables['gravity']
 
@@ -146,7 +146,7 @@ def levitation(event, wcsplayer, variables):
     levitation_message.send(wcsplayer.index, value=value)
 
 
-@Command
+@command(event='player_death')
 def suicide_bomber(event, wcsplayer, variables):
     if randint(0, 100) <= variables['chance']:
         vector = wcsplayer.player.origin
