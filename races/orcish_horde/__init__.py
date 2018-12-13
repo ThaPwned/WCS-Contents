@@ -72,13 +72,10 @@ def spawncmd(event, wcsplayer):
 
 @Command
 def disconnectcmd(event, wcsplayer):
-    print(wcsplayer, 'disconnected 1')
     delay = _delays.pop(wcsplayer, None)
 
     if delay is not None:
-        print(wcsplayer, 'disconnected 2')
         if delay.running:
-            print(wcsplayer, 'disconnected 3')
             delay.cancel()
 
 
