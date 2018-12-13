@@ -6,8 +6,6 @@
 # Python Imports
 #   Random
 from random import randint
-#   Time
-from time import time
 
 # Source.Python Imports
 #   Listeners
