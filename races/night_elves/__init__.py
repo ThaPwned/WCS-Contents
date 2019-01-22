@@ -164,7 +164,7 @@ def trueshot_aura(event, wcsplayer, variables):
         trueshot_aura_2_effect.create(center=vector1)
 
 
-@SkillEvent('player_ability_on')
+@SkillEvent('player_ability')
 def entangling_roots(event, wcsplayer, variables):
     player = wcsplayer.player
 

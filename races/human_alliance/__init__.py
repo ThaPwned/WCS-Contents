@@ -155,7 +155,7 @@ def bash(event, wcsplayer, variables):
         bash_effect_1.create(center=vector2)
 
 
-@SkillEvent('player_ability_on')
+@SkillEvent('player_ability')
 def teleport(event, wcsplayer, variables):
     player = wcsplayer.player
 

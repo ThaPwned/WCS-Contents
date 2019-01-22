@@ -171,7 +171,7 @@ def reincarnation(event, wcsplayer, variables):
             reincarnation_effect.create(center=vector)
 
 
-@SkillEvent('player_ability_on')
+@SkillEvent('player_ability')
 def chain_lightning(event, wcsplayer, variables):
     player = wcsplayer.player
 
