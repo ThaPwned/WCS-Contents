@@ -25,7 +25,8 @@ from mathlib import Vector
 #   Helpers
 from ....core.helpers.overwrites import SayText2
 #   Modules
-from ....core.modules.races.calls import command
+from ....core.modules.races.calls import SkillEvent
+from ....core.modules.races.calls import RaceEvent
 from ....core.modules.races.manager import race_manager
 #   Players
 from ....core.players.entity import Player
@@ -60,7 +61,7 @@ entangling_roots_4_effect = settings.get_effect_entry('entangling_roots_4')
 # ============================================================================
 # >> RACE CALLBACKS
 # ============================================================================
-@command
+@RaceEvent()
 def spawncmd(event, wcsplayer):
     vector = Vector(*wcsplayer.player.origin)
 
@@ -71,7 +72,7 @@ def spawncmd(event, wcsplayer):
     spawncmd_effect.create(delay=0.3, center=vector)
 
 
-@command
+@RaceEvent()
 def disconnectcmd(event, wcsplayer):
     delays = _delays.pop(wcsplayer, None)
 
@@ -81,7 +82,7 @@ def disconnectcmd(event, wcsplayer):
                 delay.cancel()
 
 
-@command
+@RaceEvent()
 def on_skill_desc(wcsplayer, skill_name, kwargs):
     config = settings.config['skills'][skill_name]['variables']
 
@@ -119,13 +120,13 @@ def on_skill_desc(wcsplayer, skill_name, kwargs):
 # ============================================================================
 # >> SKILL CALLBACKS
 # ============================================================================
-@command(event='pre_player_victim')
+@SkillEvent('pre_player_victim')
 def evasion(event, wcsplayer, variables):
     if randint(0, 100) <= variables['chance']:
         event['info'].damage = 0
 
 
-@command(event='player_victim')
+@SkillEvent('player_victim')
 def thorns_aura(event, wcsplayer, variables):
     if randint(0, 100) <= variables['chance']:
         victim = wcsplayer.player
@@ -143,7 +144,7 @@ def thorns_aura(event, wcsplayer, variables):
             thorns_aura_1_effect.create(start_point=vector1, end_point=vector2)
 
 
-@command(event='pre_player_attacker')
+@SkillEvent('pre_player_attacker')
 def trueshot_aura(event, wcsplayer, variables):
     if randint(0, 100) <= variables['chance']:
         wcsvictim = Player.from_userid(event['userid'])
@@ -163,8 +164,8 @@ def trueshot_aura(event, wcsplayer, variables):
         trueshot_aura_2_effect.create(center=vector1)
 
 
-@command(event='player_ability')
-def entangling_roots_on(event, wcsplayer, variables):
+@SkillEvent('player_ability_on')
+def entangling_roots(event, wcsplayer, variables):
     player = wcsplayer.player
 
     if not player.dead:

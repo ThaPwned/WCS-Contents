@@ -27,7 +27,8 @@ from messages import HudMsg
 #   Helpers
 from ....core.helpers.overwrites import SayText2
 #   Modules
-from ....core.modules.races.calls import command
+from ....core.modules.races.calls import SkillEvent
+from ....core.modules.races.calls import RaceEvent
 from ....core.modules.races.manager import race_manager
 #   Players
 from ....core.players.entity import Player
@@ -58,7 +59,7 @@ teleport_effect_3 = settings.get_effect_entry('teleport_3')
 # ============================================================================
 # >> RACE CALLBACKS
 # ============================================================================
-@command
+@RaceEvent()
 def spawncmd(event, wcsplayer):
     vector = Vector(*wcsplayer.player.origin)
 
@@ -68,7 +69,7 @@ def spawncmd(event, wcsplayer):
         vector.z += 12
 
 
-@command
+@RaceEvent()
 def disconnectcmd(event, wcsplayer):
     delays = _delays.pop(wcsplayer, None)
 
@@ -78,7 +79,7 @@ def disconnectcmd(event, wcsplayer):
                 delay.cancel()
 
 
-@command
+@RaceEvent()
 def on_skill_desc(wcsplayer, skill_name, kwargs):
     config = settings.config['skills'][skill_name]['variables']
 
@@ -110,21 +111,21 @@ def on_skill_desc(wcsplayer, skill_name, kwargs):
 # ============================================================================
 # >> SKILL CALLBACKS
 # ============================================================================
-@command(event='player_spawn')
+@SkillEvent('player_spawn')
 def invisibility(event, wcsplayer, variables):
     wcsplayer.player.color.a = variables['invisible']
 
     invisibility_message.send(wcsplayer.index)
 
 
-@command(event='player_spawn')
+@SkillEvent('player_spawn')
 def devotion_aura(event, wcsplayer, variables):
     wcsplayer.player.health += variables['health']
 
     devotion_aura_message.send(wcsplayer.index, value=variables['health'])
 
 
-@command(event='player_attacker')
+@SkillEvent('player_attacker')
 def bash(event, wcsplayer, variables):
     if randint(0, 100) <= variables['chance']:
         wcsvictim = Player.from_userid(event['userid'])
@@ -154,8 +155,8 @@ def bash(event, wcsplayer, variables):
         bash_effect_1.create(center=vector2)
 
 
-@command(event='player_ability')
-def teleport_on(event, wcsplayer, variables):
+@SkillEvent('player_ability_on')
+def teleport(event, wcsplayer, variables):
     player = wcsplayer.player
 
     vector1 = Vector(*player.origin)

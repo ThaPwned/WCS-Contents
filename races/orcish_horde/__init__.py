@@ -19,7 +19,8 @@ from messages import HudMsg
 #   Helpers
 from ....core.helpers.overwrites import SayText2
 #   Modules
-from ....core.modules.races.calls import command
+from ....core.modules.races.calls import SkillEvent
+from ....core.modules.races.calls import RaceEvent
 from ....core.modules.races.manager import race_manager
 #   Players
 from ....core.players.entity import Player
@@ -54,12 +55,12 @@ chain_lightning_2_effect = settings.get_effect_entry('chain_lightning_2')
 # ============================================================================
 # >> RACE CALLBACKS
 # ============================================================================
-@command
+@RaceEvent()
 def roundstartcmd(event, wcsplayer):
     wcsplayer.data['vengeance'] = True
 
 
-@command
+@RaceEvent()
 def spawncmd(event, wcsplayer):
     delay = _delays.pop(wcsplayer, None)
 
@@ -68,7 +69,7 @@ def spawncmd(event, wcsplayer):
             delay.cancel()
 
 
-@command
+@RaceEvent()
 def disconnectcmd(event, wcsplayer):
     delay = _delays.pop(wcsplayer, None)
 
@@ -77,7 +78,7 @@ def disconnectcmd(event, wcsplayer):
             delay.cancel()
 
 
-@command
+@RaceEvent()
 def on_skill_desc(wcsplayer, skill_name, kwargs):
     config = settings.config['skills'][skill_name]['variables']
 
@@ -118,7 +119,7 @@ def on_skill_desc(wcsplayer, skill_name, kwargs):
 # ============================================================================
 # >> SKILL CALLBACKS
 # ============================================================================
-@command(event='pre_player_attacker')
+@SkillEvent('pre_player_attacker')
 def critical_strike(event, wcsplayer, variables):
     if randint(0, 100) <= variables['chance']:
         userid = event['userid']
@@ -134,7 +135,7 @@ def critical_strike(event, wcsplayer, variables):
         critical_strike_effect.create(start_point=vector1, end_point=vector2)
 
 
-@command(event='pre_player_attacker')
+@SkillEvent('pre_player_attacker')
 def critical_grenade(event, wcsplayer, variables):
     if event['weapon'] == 'hegrenade_projectile':
         if randint(0, 100) <= variables['chance']:
@@ -155,7 +156,7 @@ def critical_grenade(event, wcsplayer, variables):
             critical_grenade_2_effect.create(center=vector)
 
 
-@command(event='player_death')
+@SkillEvent('player_death')
 def reincarnation(event, wcsplayer, variables):
     if wcsplayer.data.get('vengeance'):
         if randint(0, 100) <= variables['chance']:
@@ -170,8 +171,8 @@ def reincarnation(event, wcsplayer, variables):
             reincarnation_effect.create(center=vector)
 
 
-@command(event='player_ability')
-def chain_lightning_on(event, wcsplayer, variables):
+@SkillEvent('player_ability_on')
+def chain_lightning(event, wcsplayer, variables):
     player = wcsplayer.player
 
     if not player.dead:
