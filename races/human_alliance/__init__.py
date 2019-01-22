@@ -156,7 +156,7 @@ def bash(event, wcsplayer, variables):
 
 
 @SkillEvent('player_ability')
-def teleport(event, wcsplayer, variables):
+def teleport(wcsplayer, variables):
     player = wcsplayer.player
 
     vector1 = Vector(*player.origin)

@@ -172,7 +172,7 @@ def reincarnation(event, wcsplayer, variables):
 
 
 @SkillEvent('player_ability')
-def chain_lightning(event, wcsplayer, variables):
+def chain_lightning(wcsplayer, variables):
     player = wcsplayer.player
 
     if not player.dead:

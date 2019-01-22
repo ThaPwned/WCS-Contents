@@ -165,7 +165,7 @@ def trueshot_aura(event, wcsplayer, variables):
 
 
 @SkillEvent('player_ability')
-def entangling_roots(event, wcsplayer, variables):
+def entangling_roots(wcsplayer, variables):
     player = wcsplayer.player
 
     if not player.dead:
