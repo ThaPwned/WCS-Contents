@@ -80,6 +80,11 @@ def disconnectcmd(event, wcsplayer):
 
 
 @RaceEvent()
+def changefromcmd(wcsplayer):
+    wcsplayer.player.color = wcsplayer.player.color.with_alpha(255)
+
+
+@RaceEvent()
 def on_skill_desc(wcsplayer, skill_name, kwargs):
     config = settings.config['skills'][skill_name]['variables']
 
@@ -113,7 +118,7 @@ def on_skill_desc(wcsplayer, skill_name, kwargs):
 # ============================================================================
 @SkillEvent('player_spawn')
 def invisibility(event, wcsplayer, variables):
-    wcsplayer.player.color.a = variables['invisible']
+    wcsplayer.player.color = wcsplayer.player.color.with_alpha(variables['invisible'])
 
     invisibility_message.send(wcsplayer.index)
 
