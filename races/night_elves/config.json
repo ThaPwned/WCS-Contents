@@ -56,11 +56,11 @@
             "trueshot_aura_model_0": "sprites/halo.vmt",
             "trueshot_aura_model_1": "sprites/halo.vmt",
             "trueshot_aura_model_2": "sprites/halo.vmt",
-            "entangling_roots_model_0": "sprites/laser.vmt",
-            "entangling_roots_model_1": "sprites/laser.vmt",
-            "entangling_roots_model_2": "sprites/laser.vmt",
-            "entangling_roots_model_3": "sprites/laser.vmt",
-            "entangling_roots_model_4": "sprites/laser.vmt"
+            "entangling_roots_model_0": "sprites/laserbeam.vmt",
+            "entangling_roots_model_1": "sprites/laserbeam.vmt",
+            "entangling_roots_model_2": "sprites/laserbeam.vmt",
+            "entangling_roots_model_3": "sprites/laserbeam.vmt",
+            "entangling_roots_model_4": "sprites/laserbeam.vmt"
         }
     },
     "effects": {
