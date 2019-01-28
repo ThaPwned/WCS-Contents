@@ -120,9 +120,9 @@ def vampiric_aura(event, wcsplayer, variables):
 
                 health = attacker.health
 
-                if health < max_health:
+                if not max_health or health < max_health:
                     value = randint(min_health_gain, max_health_gain)
-                    value = value if health + value <= max_health else health + value - max_health
+                    value = value if not max_health or health + value <= max_health else health + value - max_health
 
                     attacker.health = health + value
 
