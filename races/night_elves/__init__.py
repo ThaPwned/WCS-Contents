@@ -14,14 +14,14 @@ from random import randint
 # Source.Python Imports
 #   Entities
 from entities.constants import MoveType
-#   Events
-from events import Event
 #   Listeners
 from listeners.tick import Delay
 #   Mathlib
 from mathlib import Vector
 
 # WCS Imports
+#   Events
+from ....core.events import Event
 #   Helpers
 from ....core.helpers.overwrites import SayText2
 #   Modules
