@@ -70,16 +70,6 @@ def spawncmd(event, wcsplayer):
 
 
 @RaceEvent()
-def disconnectcmd(event, wcsplayer):
-    delays = _delays.pop(wcsplayer, None)
-
-    if delays is not None:
-        for delay in delays:
-            if delay.running:
-                delay.cancel()
-
-
-@RaceEvent()
 def changefromcmd(wcsplayer):
     wcsplayer.player.color = wcsplayer.player.color.with_alpha(255)
 
@@ -188,10 +178,21 @@ def teleport(wcsplayer, variables):
 # ============================================================================
 @Event('round_start')
 def round_start(event):
-    for delay in chain.from_iterable(_delays.values()):
+    for delay in chain.from_iterable(list(_delays.values())):
         delay()
 
     _delays.clear()
+
+
+@Event('player_disconnect')
+def player_disconnect(event):
+    wcsplayer = Player.from_userid(event['userid'])
+    delays = _delays.pop(wcsplayer, None)
+
+    if delays is not None:
+        for delay in delays:
+            if delay.running:
+                delay.cancel()
 
 
 # ============================================================================

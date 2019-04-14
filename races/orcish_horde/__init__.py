@@ -16,6 +16,8 @@ from mathlib import Vector
 from messages import HudMsg
 
 # WCS Imports
+#   Events
+from ....core.events import Event
 #   Helpers
 from ....core.helpers.overwrites import SayText2
 #   Modules
@@ -226,6 +228,19 @@ def chain_lightning(wcsplayer, variables):
                 chain_lightning_count_message.send(wcsplayer.index, count=len(targets))
             else:
                 chain_lightning_failed_message.send(wcsplayer.index)
+
+
+# ============================================================================
+# >> EVENTS
+# ============================================================================
+@Event('player_team')
+def player_team(event):
+    wcsplayer = Player.from_userid(event['userid'])
+    delay = _delays.pop(wcsplayer, None)
+
+    if delay is not None:
+        if delay.running:
+            delay.cancel()
 
 
 # ============================================================================
