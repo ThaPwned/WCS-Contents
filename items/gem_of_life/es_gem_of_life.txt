@@ -1,0 +1,22 @@
+//////////////////
+//Defensive Item//
+//////////////////
+
+block buycmd
+{
+	es getplayerinfo wcs_alive server_var(wcs_userid) isdead
+	if (server_var(wcs_alive) = 0) do
+	{
+		es_delayed .2 wcs_setfx health server_var(wcs_userid) + 50 0
+		es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Gem of Life - You received 50 more health
+	}
+}
+
+block player_spawn
+{
+	if (event_var(es_userdead) = 0) do
+	{
+		es_delayed .2 wcs_setfx health event_var(userid) + 50 0
+		es_tell event_var(userid) #multi #green [WCS]: #lightgreen Gem of Life - You received 50 more health
+	}
+}

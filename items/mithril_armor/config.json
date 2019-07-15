@@ -1,0 +1,8 @@
+{
+    "cost": 2000,
+    "required": 0,
+    "dab": 0,
+    "duration": 1,
+    "count": 1,
+    "event": "player_victim"
+}

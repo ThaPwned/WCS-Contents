@@ -1,0 +1,30 @@
+//////////////////
+//Defensive Item//
+//////////////////
+
+block buycmd
+{
+	es getplayerinfo wcs_alive server_var(wcs_userid) isdead
+	if (server_var(wcs_alive) = 0) do
+	{
+		es wcsgroup set ulti_immunity server_var(wcs_userid) 1
+		es wcsgroup set swardinvul server_var(wcs_userid) 1
+		es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Trinket of immunity - You're protected from harmful wards and ultimates
+	}
+}
+
+block player_spawn
+{
+	if (event_var(es_userdead) = 0) do
+	{
+		es wcsgroup set ulti_immunity event_var(userid) 1
+		es wcsgroup set swardinvul event_var(userid) 1
+		es_tell event_var(userid) #multi #green [WCS]: #lightgreen Trinket of immunity - You're protected from harmful wards and ultimates
+	}
+}
+
+event player_death
+{
+	es wcsgroup set ulti_immunity event_var(userid) 0
+	es wcsgroup set swardinvul event_var(userid) 0
+}

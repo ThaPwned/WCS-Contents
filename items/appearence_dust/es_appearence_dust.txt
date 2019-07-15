@@ -1,0 +1,47 @@
+//////////////////
+//Offensive Item//
+//////////////////
+
+block load
+{
+	es_xset shop_tmp 0
+	es_xset shop_red 0 
+	es_xset shop_green 0
+	es_xset shop_blue 0
+	es_xset shop_alpha 0
+}
+
+block player_attacker
+{
+	if (event_var(es_userdead) = 0) do
+	{
+		if (event_var(es_attackerdead) = 0) do
+		{
+			es wcsgroup get is_already_colored shop_tmp event_var(userid)
+			if (server_var(shop_tmp) == 0) do
+			{
+				es wcsgroup set is_already_colored event_var(userid) 1
+				es_delayed 5 es wcsgroup set is_already_colored event_var(userid) 0
+				es wcs_getcolors event_var(userid) shop_red shop_green shop_blue shop_alpha
+				es_delayed 5 wcs_color event_var(userid) server_var(shop_red) server_var(shop_green) server_var(shop_blue) server_var(shop_alpha)
+				if (event_var(es_userteam) = 2) do
+				{
+					es wcs_color event_var(userid) 255 0 0 255
+					es_tell event_var(userid) #multi #green [WCS]: #lightgreen Appearence Dust - Colored you red for 5 seconds
+					es_tell event_var(attacker) #multi #green [WCS]: #lightgreen Appearence Dust - Colored event_var(es_username) red for 5 seconds
+				}
+				if (event_var(es_userteam) = 3) do
+				{
+					es wcs_color event_var(userid) 0 255 0 255
+					es_tell event_var(userid) #multi #green [WCS]: #lightgreen Appearence Dust - Colored you blue for 5 seconds
+					es_tell event_var(attacker) #multi #green [WCS]: #lightgreen Appearence Dust - Colored event_var(es_username) blue for 5 seconds
+				}
+			}
+		}
+	}
+}
+
+event player_death
+{
+	es wcsgroup set is_already_colored event_var(userid) 0
+}

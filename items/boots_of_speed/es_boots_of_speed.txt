@@ -1,0 +1,22 @@
+////////////////////
+//Enhancement Item//
+////////////////////
+
+block buycmd
+{
+	es getplayerinfo wcs_alive server_var(wcs_userid) isdead
+	if (server_var(wcs_alive) = 0) do
+	{
+		es wcs_setfx speed server_var(wcs_userid) + .25 0
+		es_tell server_var(wcs_userid) #multi #green[WCS]#lightgreen Boots of Speed - Increased your speed by 25%
+	}
+}
+
+block player_spawn
+{
+	if (event_var(es_userdead) = 0) do
+	{
+		es wcs_setfx speed event_var(userid) + .25 0
+		es_tell event_var(userid) #multi #green[WCS]#lightgreen Boots of Speed - Increased your speed by 25%
+	}
+}

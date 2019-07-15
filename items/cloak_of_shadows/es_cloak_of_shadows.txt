@@ -1,0 +1,22 @@
+////////////////////
+//Enhancement Item//
+////////////////////
+
+block buycmd
+{
+	es getplayerinfo wcs_alive server_var(wcs_userid) isdead
+	if (server_var(wcs_alive) = 0) do
+	{
+		es_delayed 2 wcs_color server_var(wcs_userid) 255 255 255 76 1
+		es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Cloak of Shadows - Made you become 70% invisible
+	}
+}
+	
+block player_spawn
+{
+	if (event_var(es_userdead) = 0) do
+	{
+		es_delayed 2 wcs_color event_var(userid) 255 255 255 76 1
+		es_tell event_var(userid) #multi #green [WCS]: #lightgreen Cloak of Shadows - Made you become 70% invisible
+	}
+}

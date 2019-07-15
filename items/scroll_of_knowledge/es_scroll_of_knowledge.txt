@@ -1,0 +1,18 @@
+///////////////////////////
+//Experience & Level Item//
+///////////////////////////
+
+block buycmd
+{
+	es_xrand shop_rand_chance 1 2
+	if (server_var(shop_rand_chance) == 1) do
+	{
+		es wcs_givexp server_var(wcs_userid) 50 0
+		es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Scroll of Knowledge - You've recieved 50 experience!
+	}
+	else do
+	{
+		es wcs_givexp server_var(wcs_userid) 100 0
+		es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Scroll of Knowledge - You've recieved 100 experience!
+	}
+}

@@ -1,0 +1,35 @@
+//////////////////
+//Offensive Item//
+//////////////////
+
+block load
+{
+	es_xset shop_burning_check 0
+}
+
+block player_attacker
+{
+	if (event_var(es_userdead) = 0) do
+	{
+		if (event_var(es_attackerdead) = 0) do
+		{
+			if (event_var(weapon) != knife) do
+			{
+				es wcsgroup get is_burning shop_burning_check event_var(userid)
+				ifx false(shop_burning_check) do
+				{
+					es wcsgroup set is_burning event_var(userid) 1
+					es_delayed 3 wcsgroup set is_burning event_var(userid) 0			
+					es wcs_setfx burn event_var(userid) = 1 3
+					es_tell event_var(userid) #multi #green [WCS]: #lightgreen Bottled Flame - Set you on ablaze for 3 seconds
+					es_tell event_var(attacker) #multi #green [WCS]: #lightgreen Bottled Flame - Set event_var(es_username) ablaze for 3 seconds
+				}
+			}
+		}
+	}
+}
+
+event player_death
+{
+	es wcsgroup set is_burning event_var(userid) 0
+}

@@ -1,0 +1,9 @@
+///////////////////////////
+//Experience & Level Item//
+///////////////////////////
+
+block buycmd
+{
+	es wcs_givelevel server_var(wcs_userid) 1
+	es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Tome of Insight - You've recieved 1 level!
+}

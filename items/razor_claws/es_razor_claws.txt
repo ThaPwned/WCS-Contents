@@ -1,0 +1,44 @@
+//////////////////
+//Offensive Item//
+//////////////////
+
+block load
+{
+	es_xset shop_rand 0
+	es_xset shop_dmg_rand 0
+}
+
+block player_attacker
+{
+	if (event_var(es_userdead) = 0) do
+	{
+		if (event_var(es_attackerdead) = 0) do
+		{
+			if (event_var(weapon) == knife) do
+			{
+				es_xrand shop_rand 1 5
+				if (server_var(shop_rand) <= 2) do
+				{
+					es_xrand shop_dmg_rand 7 14
+					es wcs_dealdamage event_var(userid) event_var(attacker) server_var(shop_dmg_rand)
+					es_tell event_var(attacker) #multi #green [WCS]: #lightgreen Left razor claw - Amplified your attack by server_var(shop_dmg_rand) damage
+				}
+				if (server_var(shop_rand) => 3) do
+				{
+					if (server_var(shop_rand) <= 4) do
+					{
+						es_xrand shop_dmg_rand 7 14
+						es wcs_dealdamage event_var(userid) event_var(attacker) server_var(shop_dmg_rand)
+						es_tell event_var(attacker) #multi #green [WCS]: #lightgreen Right razor claw - Amplified your attack by server_var(shop_dmg_rand) damage
+					}
+				}
+				if (server_var(shop_rand) == 5) do
+				{
+					es_xrand shop_dmg_rand 15 30
+					es wcs_dealdamage event_var(userid) event_var(attacker) server_var(shop_dmg_rand)
+					es_tell event_var(attacker) #multi #green [WCS]: #lightgreen Double razor claws - Amplified your attack by server_var(shop_dmg_rand) damage
+				}
+			}
+		}
+	}
+}

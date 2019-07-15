@@ -1,0 +1,24 @@
+////////////////////
+//Enhancement Item//
+////////////////////
+
+block buycmd
+{
+	es getplayerinfo wcs_alive server_var(wcs_userid) isdead
+	if (server_var(wcs_alive) = 0) do
+	{
+		es_delayed 2 wcs_setfx 1stclip server_var(wcs_userid) + 15 0
+		es_delayed 2 wcs_setfx 2ndclip server_var(wcs_userid) + 7 0
+		es_delayed 2 es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Quiver of the Eternals - Increased your ammo clip size
+	}
+}
+
+block player_spawn
+{
+	if (event_var(es_userdead) = 0) do
+	{
+		es_delayed 2 wcs_setfx 1stclip event_var(userid) + 15 0
+		es_delayed 2 wcs_setfx 2ndclip event_var(userid) + 7 0
+		es_delayed 2 es_tell event_var(userid) #multi #green [WCS]: #lightgreen Quiver of the Eternals - Increased your ammo clip size
+	}
+}

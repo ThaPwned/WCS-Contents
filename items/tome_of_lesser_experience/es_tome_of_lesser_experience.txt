@@ -1,0 +1,9 @@
+///////////////////////////
+//Experience & Level Item//
+///////////////////////////
+
+block buycmd
+{
+	es wcs_givexp server_var(wcs_userid) 200 0
+	es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Tome of Lesser Experience - You've recieved 200 experience!
+}

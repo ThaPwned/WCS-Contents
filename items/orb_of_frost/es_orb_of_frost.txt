@@ -1,0 +1,49 @@
+//////////////////
+//Offensive Item//
+//////////////////
+
+block load
+{
+	es_xset shop_tmp 0
+	es_xset shop_rand 0
+}
+
+block player_attacker
+{
+	if (event_var(es_userdead) = 0) do
+	{
+		if (event_var(es_attackerdead) = 0) do
+		{
+			if (event_var(weapon) == knife) do
+			{
+				es_xdoblock wcs/modules/items/orb_of_frost/has_been_slowed
+			}
+			else do
+			{
+				es_xrand shop_rand 0 1
+				ifx true(shop_rand) do
+				{
+					es_xdoblock wcs/modules/items/orb_of_frost/has_been_slowed
+				}
+			}
+		}
+	}
+}
+
+block has_been_slowed
+{
+	es wcsgroup get is_slowed shop_tmp event_var(userid)
+	if (server_var(shop_tmp) == 0) do
+	{
+		es wcsgroup set is_slowed event_var(userid) 1
+		es_delayed 2 wcsgroup set is_slowed event_var(userid) 0
+		es wcs_setfx speed event_var(userid) - 0.5 2
+		es_tell event_var(userid) #multi #green [WCS]: #lightgreen Orb of Frost - Slowed you down for 2 seconds
+		es_tell event_var(attacker) #multi #green [WCS]: #lightgreen Orb of Frost - Slowed event_var(es_username) for 2 seconds
+	}
+}
+
+event player_death
+{
+	es wcsgroup set is_slowed event_var(userid) 0
+}

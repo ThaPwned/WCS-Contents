@@ -1,0 +1,45 @@
+////////////////////
+//Enhancement Item//
+////////////////////
+
+block buycmd
+{
+	es getplayerinfo wcs_alive server_var(wcs_userid) isdead
+	if (server_var(shop_tmp) = 1) do
+	{
+		es_delayed 3 wcs_spawn server_var(wcs_userid) 1
+		es_delayed 3.6 wcs_falldamage server_var(wcs_userid) 0.2
+		es_delayed 3.6 wcs_setfx speed server_var(wcs_userid) + .25 0
+		es_delayed 3.6 wcs_setfx health server_var(wcs_userid) + 75 0
+		es_delayed 3.6 wcs_setfx gravity server_var(wcs_userid) - .1 0
+		es_tell server_var(wcs_userid) #multi #green[WCS]#lightgreen Heart of the Phoenix - You'll respawn in 3 seconds!
+		es wcs_centertell server_var(wcs_userid) Respawning in 3 seconds!
+		es_delayed 1 wcs_centertell server_var(wcs_userid) Respawning in 2 seconds!
+		es_delayed 2 wcs_centertell server_var(wcs_userid) Respawning in 1 seconds!
+		es_delayed 3 wcs_centertell server_var(wcs_userid) You've been respawned!
+	}
+	if (server_var(shop_tmp) = 0) do
+	{
+		es wcsgroup set respawn server_var(wcs_userid) 1
+		es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Heart of the Phoenix - You'll be revived when you die!	
+	}
+}
+
+block player_death
+{
+	es wcsgroup get respawn shop_revive event_var(userid)
+	if (server_var(shop_revive) = 1) do
+	{
+		es wcsgroup set respawn event_var(userid) 0
+		es_delayed 3 wcs_spawn event_var(userid) 1
+		es_delayed 3.6 wcs_falldamage event_var(userid) 0.2
+		es_delayed 3.6 wcs_setfx speed event_var(userid) + .25 0
+		es_delayed 3.6 wcs_setfx health event_var(userid) + 75 0
+		es_delayed 3.6 wcs_setfx gravity event_var(userid) - .1 0
+		es_tell event_var(userid) #multi #green[WCS]#lightgreen Heart of the Phoenix - You'll respawn in 3 seconds!
+		es wcs_centertell event_var(userid) Respawning in 3 seconds!
+		es_delayed 1 wcs_centertell event_var(userid) Respawning in 2 seconds!
+		es_delayed 2 wcs_centertell event_var(userid) Respawning in 1 seconds!
+		es_delayed 3 wcs_centertell event_var(userid) You've been respawned!
+	}
+}

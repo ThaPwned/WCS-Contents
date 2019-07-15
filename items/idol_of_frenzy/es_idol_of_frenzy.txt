@@ -1,0 +1,44 @@
+//////////////////
+//Offensive Item//
+//////////////////
+
+block load
+{
+	es_xset shop_frenzy_check 0
+}
+block player_attacker
+{
+	if (event_var(es_userdead) = 0) do
+	{
+		if (event_var(es_attackerdead) = 0) do
+		{
+			if (event_var(weapon) == knife) do
+			{
+				es wcsgroup get is_frenzied shop_frenzy_check event_var(attacker)
+				if (server_var(shop_frenzy_check) == 2) do
+				{
+					es wcs_setfx attackspeed event_var(userid) = 1.99 0
+					es wcsgroup set is_frenzied event_var(userid) 3
+					es_tell event_var(attacker) #multi #green [WCS]: #lightgreen Idol of Frenzy - Inreased your attack speed by 99%
+				}
+				if (server_var(shop_frenzy_check) == 1) do
+				{
+					es wcs_setfx attackspeed event_var(userid) = 1.66 0
+					es wcsgroup set is_frenzied event_var(userid) 2
+					es_tell event_var(attacker) #multi #green [WCS]: #lightgreen Idol of Frenzy - Inreased your attack speed by 66%
+				}
+				ifx false(shop_frenzy_check) do
+				{
+					es wcs_setfx attackspeed event_var(userid) = 1.33 0
+					es wcsgroup set is_frenzied event_var(userid) 1
+					es_tell event_var(attacker) #multi #green [WCS]: #lightgreen Idol of Frenzy - Inreased your attack speed by 33%
+				}
+			}
+		}
+	}
+}
+
+event player_death
+{
+	es wcsgroup set is_frenzied event_var(userid) 0
+}

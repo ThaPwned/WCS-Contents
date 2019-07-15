@@ -1,0 +1,8 @@
+{
+    "cost": 5000,
+    "required": 0,
+    "dab": 2,
+    "duration": 0,
+    "count": 999,
+    "event": "player_buy"
+}

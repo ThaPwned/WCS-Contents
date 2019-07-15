@@ -1,0 +1,18 @@
+///////////////////////////
+//Experience & Level Item//
+///////////////////////////
+
+block buycmd
+{
+	es_xrand shop_rand_chance 1 100
+	if (server_var(shop_rand_chance) <= 33) do
+	{
+		es wcs_givelevel server_var(wcs_userid) 2
+		es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Rune of Wisdom - You've recieved 2 levels!
+	}
+	else do
+	{
+		es wcs_givelevel server_var(wcs_userid) 1
+		es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Rune of Wisdom - You've recieved 1 level!
+	}
+}

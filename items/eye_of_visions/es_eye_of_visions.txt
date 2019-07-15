@@ -1,0 +1,24 @@
+//////////////////
+//Defensive Item//
+//////////////////
+
+block buycmd
+{
+	es getplayerinfo wcs_alive server_var(wcs_userid) isdead
+	if (server_var(wcs_alive) = 0) do
+	{
+		es_setplayerprop server_var(wcs_userid) CCSPlayer.m_flFlashMaxAlpha 0
+		es_setplayerprop server_var(wcs_userid) CCSPlayer.m_flFlashDuration 0.1
+		es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Eye of Visions - Reduces the impact of blinding effects on you
+	}
+}
+
+block player_spawn
+{
+	if (event_var(es_userdead) = 0) do
+	{
+		es_setplayerprop event_var(userid) CCSPlayer.m_flFlashMaxAlpha 0
+		es_setplayerprop event_var(userid) CCSPlayer.m_flFlashDuration 0.1
+		es_tell event_var(userid) #multi #green [WCS]: #lightgreen Eye of Visions - Reduces the impact of blinding effects on you
+	}
+}

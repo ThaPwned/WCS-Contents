@@ -1,0 +1,9 @@
+///////////////////////////
+//Experience & Level Item//
+///////////////////////////
+
+block buycmd
+{
+	es wcs_givexp server_var(wcs_userid) 400 0
+	es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Tome of Greater Experience - You've recieved 400 experience!
+}

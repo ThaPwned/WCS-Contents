@@ -1,0 +1,29 @@
+//////////////////
+//Defensive Item//
+//////////////////
+
+block load
+{
+	es_xset shop_stored_maxhealth 0
+}
+
+block buycmd
+{
+	es getplayerinfo wcs_alive server_var(wcs_userid) isdead
+	if (server_var(wcs_alive) = 0) do
+	{
+		es_delayed 1.9 playerget health shop_stored_maxhealth server_var(wcs_userid)
+		es_delayed 2 wcs_regeneration server_var(wcs_userid) 2 1 server_var(shop_stored_maxhealth) 1000 1
+		es_delayed 2 es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Belt of Vitality - Revitalizes you if you're below server_var(shop_stored_maxhealth) health
+	}
+}
+
+block player_spawn
+{
+	if (event_var(es_userdead) = 0) do
+	{
+		es_delayed 1.9 playerget health shop_stored_maxhealth event_var(userid)
+		es_delayed 2 wcs_regeneration event_var(userid) 2 1 server_var(shop_stored_maxhealth) 1000 1
+		es_delayed 2 es_tell event_var(userid) #multi #green [WCS]: #lightgreen Belt of Vitality - Revitalizes you if you're below server_var(shop_stored_maxhealth) health
+	}
+}

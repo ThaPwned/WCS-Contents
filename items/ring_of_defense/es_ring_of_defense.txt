@@ -1,0 +1,60 @@
+//////////////////
+//Defensive Item//
+//////////////////
+
+block load
+{
+	es_xset shop_red 0 
+	es_xset shop_green 0
+	es_xset shop_blue 0
+	es_xset shop_alpha 0
+	es_xset shop_revive 0
+	es_xset shop_tmp 0
+	es_xset shop_rand 0
+	es_xset shop_rand_chance 0
+	es_xset shop_revive 0
+	es_xset shop_dmg_rand 0
+	es_xset shop_hp_reduction 0
+	es_xset shop_frenzy_check 0
+	es_xset shop_burning_check 0
+	es_xset shop_stored_maxhealth 0
+}
+
+block buycmd
+{
+	es getplayerinfo wcs_alive server_var(wcs_userid) isdead
+	if (server_var(wcs_alive) = 0) do
+	{
+		es playerget armor shop_tmp server_var(wcs_userid)
+		if (server_var(shop_tmp) < 130) do 
+		{
+			es wcs_setfx armor server_var(wcs_userid) + 125 0
+			es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Ring of Defense - Increased your armor by 125
+			
+		}
+		if (server_var(shop_tmp) => 130) do 
+		{
+			es_delayed .5 wcs_setfx armor server_var(wcs_userid) = 255 0
+			es_tell server_var(wcs_userid) #multi #green [WCS]: #lightgreen Ring of Defense - Increased your armor to 255
+		}
+	}
+}
+
+block player_spawn
+{
+	if (event_var(es_userdead) = 0) do
+	{
+		es playerget armor shop_tmp event_var(userid)
+		if (server_var(shop_tmp) < 130) do 
+		{
+			es wcs_setfx armor event_var(userid) + 125 0
+			es_tell event_var(userid) #multi #green [WCS]: #lightgreen Ring of Defense - Increased your armor by 125
+			
+		}
+		if (server_var(shop_tmp) => 130) do 
+		{
+			es_delayed .5 wcs_setfx armor event_var(userid) = 255 0
+			es_tell event_var(userid) #multi #green [WCS]: #lightgreen Ring of Defense - Increased your armor to 255
+		}
+	}
+}
