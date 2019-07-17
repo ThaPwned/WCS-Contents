@@ -1,7 +1,7 @@
 {
     "cost": 2500,
     "required": 0,
-    "dab": 0,
+    "dab": 1,
     "duration": 1,
     "count": 1,
     "event": "player_spawn"
