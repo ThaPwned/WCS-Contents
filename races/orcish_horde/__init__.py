@@ -121,7 +121,7 @@ def on_skill_desc(wcsplayer, skill_name, kwargs):
 # ============================================================================
 # >> SKILL CALLBACKS
 # ============================================================================
-@SkillEvent('pre_player_attacker')
+@SkillEvent('pre_take_damage_attacker')
 def critical_strike(event, wcsplayer, variables):
     if randint(0, 100) <= variables['chance']:
         userid = event['userid']
@@ -137,7 +137,7 @@ def critical_strike(event, wcsplayer, variables):
         critical_strike_effect.create(start_point=vector1, end_point=vector2)
 
 
-@SkillEvent('pre_player_attacker')
+@SkillEvent('pre_take_damage_attacker')
 def critical_grenade(event, wcsplayer, variables):
     if event['weapon'] == 'hegrenade_projectile':
         if randint(0, 100) <= variables['chance']:

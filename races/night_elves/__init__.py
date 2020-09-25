@@ -120,7 +120,7 @@ def on_skill_desc(wcsplayer, skill_name, kwargs):
 # ============================================================================
 # >> SKILL CALLBACKS
 # ============================================================================
-@SkillEvent('pre_player_victim')
+@SkillEvent('pre_take_damage_victim')
 def evasion(event, wcsplayer, variables):
     if randint(0, 100) <= variables['chance']:
         event['info'].damage = 0
@@ -144,7 +144,7 @@ def thorns_aura(event, wcsplayer, variables):
             thorns_aura_1_effect.create(start_point=vector1, end_point=vector2)
 
 
-@SkillEvent('pre_player_attacker')
+@SkillEvent('pre_take_damage_attacker')
 def trueshot_aura(event, wcsplayer, variables):
     if randint(0, 100) <= variables['chance']:
         wcsvictim = Player.from_userid(event['userid'])
